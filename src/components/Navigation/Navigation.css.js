@@ -1,5 +1,5 @@
-import styled from 'styled-components'
-import { Wrapper } from '../Wrapper/Wrapper'
+import styled from 'styled-components';
+import { Wrapper } from '../Wrapper/Wrapper';
 
 export const Container = styled.div`
 background-color: ${({ theme }) => theme.colors.main};
@@ -10,6 +10,9 @@ height: 50px;
 
 export const List = styled.ul`
     display:flex;
+    & .active > button{
+        color: ${ ({ theme }) => theme.colors.text};
+    }
 `
 
 export const NavWrapper = styled(Wrapper)`
