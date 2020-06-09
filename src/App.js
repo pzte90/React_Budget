@@ -6,7 +6,6 @@ import { GlobalStyles } from './index.css';
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
 function App() {
-  console.log(theme);
   return (
     <ThemeProvider theme={theme}>
       <GlobalStyles/>
@@ -17,6 +16,10 @@ function App() {
             {id:2, name:"Budget", exact:false , path:"/budget" }
           ]
           }
+          buttons={[
+            {id:1, name: 'dark'},
+            {id:2, name: 'white'}
+          ]}
         >
         </Navigation>
           <Switch>

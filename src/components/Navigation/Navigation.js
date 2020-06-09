@@ -1,14 +1,19 @@
-import React from 'react';
+import React, {useMemo} from 'react';
 import { Container, List, NavWrapper } from './Navigation.css'
-import { NavLink } from 'react-router-dom';
+import Button from '../Button/Button'
+import PropTypes from 'prop-types';
 
+const Navigation = ({ links, buttons }) => {
 
-
-const Navigation = ({ links }) => {
-
-    const linkList = links.map(link => (
-        <NavLink key={link.id} exact={link.exact} to={link.path}>{link.name}</NavLink>
-    )) 
+    const linkList = useMemo( () => links.map(link => (
+        <li key={link.id}>
+            <Button variant="navigation" exact={link.exact} to={link.path}>{link.name}</Button>
+        </li>
+    )), [links])
+    
+    const buttonList = useMemo( () => buttons.map(button => (
+        <Button onClick={()=> console.log(button.name)} to={button.to} key={button.id}>{button.name}</Button>
+    )), [buttons])
 
     return (
         <Container>
@@ -17,8 +22,7 @@ const Navigation = ({ links }) => {
                     {linkList}
                 </List>
                 <div>
-                    <button>Black</button>
-                    <button>White</button>
+                    {buttonList}
                 </div>
             </NavWrapper>
         </Container>
@@ -26,3 +30,8 @@ const Navigation = ({ links }) => {
 }
 
 export default Navigation;
+
+Navigation.propTypes= {
+    links: PropTypes.array.isRequired,
+    buttons: PropTypes.array.isRequired
+}
